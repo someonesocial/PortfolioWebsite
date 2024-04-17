@@ -1,4 +1,12 @@
-.small-image{
-    width: 100px;
-    height: 100px;
-}
+body {
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  p {
+    color: #333;
+    position: absolute;
+    top: 0px;
+    left: 20px;
+    font-family: 'Open Sans', sans-serif;
+  }
