@@ -17,7 +17,7 @@ There were times during development when I wished I had used a physics library. 
 
 Have a modern version of Node.installed. Last check was with v20.11
 
-## #How to set up
+### How to set up
 
 - Open a Terminal in the folder containing the package.json
 - Type `npm i` to install the dependencies inside of the project automatically
