@@ -17,8 +17,7 @@ const mouse: { x: number; y: number } = {
 
 const color: string = "#ff0000";
 
-const gravity = 0.2;
-const friction = 0.98;
+const gravity = 0.1;
 
 // Event Listeners
 addEventListener("mousemove", (event: MouseEvent) => {
@@ -64,17 +63,15 @@ class Ball {
 
   update(ballArray: Ball[]): void {
     if (this.y + this.radius + this.velocity.y > canvas.height) {
-      //bounce bottom TODO:lookup
+      //bounce bottom and gravity
       this.velocity.y = -this.velocity.y;
-      this.velocity.y *= friction;
-      this.velocity.x *= friction;
     } else {
       this.velocity.y += gravity;
     }
 
     if (this.y - this.radius + this.velocity.y <= 0) {
       //bounce top
-      this.velocity.y = -this.velocity.y * friction;
+      this.velocity.y = -this.velocity.y;
     }
 
     if (
@@ -82,7 +79,7 @@ class Ball {
       this.x - this.radius + this.velocity.x <= 0
     ) {
       //bounce left right
-      this.velocity.x = -this.velocity.x * friction;
+      this.velocity.x = -this.velocity.x;
     }
 
     for (let i = 0; i < ballArray.length; i++) {
