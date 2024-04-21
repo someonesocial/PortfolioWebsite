@@ -1,10 +1,17 @@
-## How to get started
+#Portfolio
 
-## Prerequisites
+##Inspiration
+
+Inspired by this [Machine](https://xkcd.com/2916) from xkcd, I thought it could be the basis for a cool background on an interactive portfolio site.
+The original uses [Rapier](https://rapier.rs) as the physics engine, but after having problems installing it and its prerequisite 😒 I thought it would be cool and educational for me to code the physics from scratch using HTML Canvas. Little did I know that this would quickly turn into a maths and physics project.
+
+## How to work with Vite
+
+### Prerequisites
 
 Have a modern version of Node.installed. Last check was with v20.11
 
-## How to set up
+## #How to set up
 
 - Open a Terminal in the folder containing the package.json
 - Type `npm i` to install the dependencies inside of the project automatically
@@ -14,7 +21,7 @@ Have a modern version of Node.installed. Last check was with v20.11
 - after you watched how the typescript modules work with each other you can delete all .ts files in the src folder except `index.ts`
 - then empty the `index.ts` file and empty the body of your `index.html` file and start building your own app
 
-## Starting the app
+### Starting the app
 
 - After you did set up your application, run `npm run build` to compile it. If there are no erros, there should be a "build"-folder in your project folder
 - take a look at `index.html` - it should already have a script file connected to your TypeScript (The browser can only run JavaScript)
