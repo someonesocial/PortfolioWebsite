@@ -1,6 +1,24 @@
+/**
+ * Generates a random integer within a specified range.
+ *
+ * @param  min: number | The lower bound of the range (inclusive).
+ * @param  max: number | The upper bound of the range (inclusive).
+ * @return number | A random integer between the min and max values.
+ */
+
 function randomIntFromRange(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+/**
+ * Calculates the distance between two points in 2D space.
+ *
+ * @param  x1: number | The x-coordinate of the first point.
+ * @param  y1: number | The y-coordinate of the first point.
+ * @param  x2: number | The x-coordinate of the second point.
+ * @param  y2: number | The y-coordinate of the second point.
+ * @return number | The distance between points (x1, y1) and (x2, y2).
+ */
 
 function distance(x1: number, y1: number, x2: number, y2: number): number {
   const xDist: number = x2 - x1;
