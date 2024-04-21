@@ -1,6 +1,11 @@
 // Imports use relative file paths or Node.js package names
 import { canvas, c } from "./dom-utils";
-import { randomIntFromRange } from "./utils";
+import {
+  randomIntFromRange,
+  distance,
+  rotate,
+  resolveCollision,
+} from "./utils";
 // CSS IMPORT IN TS NUR ÜBER VITE MÖGLICH
 import "./styles/styles.css";
 
@@ -41,42 +46,59 @@ addEventListener("click", () => {
 class Ball {
   x: number;
   y: number;
-  dx: number;
-  dy: number;
+  velocity: { x: number; y: number };
   radius: number;
+  mass: number;
   color: string;
 
   constructor(
     x: number,
     y: number,
-    dx: number,
-    dy: number,
+    velocity: { x: number; y: number },
     radius: number,
+    mass: number,
     color: string
   ) {
     this.x = x;
     this.y = y;
-    this.dx = dx;
-    this.dy = dy;
+    this.velocity = velocity;
     this.radius = radius;
+    this.mass = mass;
     this.color = color;
   }
 
-  update(): void {
-    if (this.y + this.radius + this.dy > canvas.height) {
-      this.dy = -this.dy;
-      this.dy *= friction;
-      this.dx *= friction;
+  update(ballArray: Ball[]): void {
+    if (this.y + this.radius + this.velocity.y > canvas.height) {
+      //bounce bottom
+      this.velocity.y = -this.velocity.y;
+      this.velocity.y *= friction;
+      this.velocity.x *= friction;
     } else {
-      this.dy += gravity;
+      this.velocity.y += gravity;
+    }
+
+    if (this.y + this.radius >= canvas.height) {
+      //bounce top
+      this.velocity.y = -this.velocity.y * friction;
     }
 
     if (this.x + this.radius >= canvas.width || this.x - this.radius <= 0) {
-      this.dx = -this.dx * friction;
+      //bounce left right
+      this.velocity.x = -this.velocity.x * friction;
     }
 
-    this.x += this.dx;
-    this.y += this.dy;
+    for (let i = 0; i < ballArray.length; i++) {
+      if (this === ballArray[i]) continue;
+      if (
+        distance(this.x, this.y, ballArray[i].x, ballArray[i].y) -
+          this.radius * 2 <
+        0
+      ) {
+        resolveCollision(this, ballArray[i]);
+      }
+    }
+    this.x += this.velocity.x;
+    this.y += this.velocity.y;
     this.draw();
   }
 
@@ -96,13 +118,26 @@ let ballArray: Ball[] = [];
 function init(): void {
   ballArray = [];
 
-  for (let i = 0; i < 600; i++) {
+  for (let i = 0; i < 50; i++) {
     const radius = 20;
-    const x = randomIntFromRange(radius, canvas.width - radius);
-    const y = randomIntFromRange(0, canvas.height - radius);
-    const dx = randomIntFromRange(-3, 3);
-    const dy = randomIntFromRange(-2, 2);
-    ballArray.push(new Ball(x, y, dx, dy, radius, color));
+    const mass = 1;
+    let x = randomIntFromRange(radius, canvas.width - radius);
+    let y = randomIntFromRange(radius, canvas.height - radius);
+    if (i !== 0) {
+      for (let j = 0; j < ballArray.length; j++) {
+        if (distance(x, y, ballArray[j].x, ballArray[j].y) - radius * 2 < 0) {
+          x = randomIntFromRange(radius, canvas.width - radius);
+          y = randomIntFromRange(radius, canvas.height - radius);
+
+          j = -1;
+        }
+      }
+    }
+    const velocity = {
+      x: randomIntFromRange(-2, 2),
+      y: randomIntFromRange(-2, 2),
+    };
+    ballArray.push(new Ball(x, y, velocity, radius, mass, color));
   }
 }
 
@@ -113,7 +148,7 @@ function animate(): void {
   c.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < ballArray.length; i++) {
-    ballArray[i].update();
+    ballArray[i].update(ballArray);
   }
 }
 init();
