@@ -1,11 +1,6 @@
 // Imports use relative file paths or Node.js package names
 import { canvas, c } from "./dom-utils";
-import {
-  randomIntFromRange,
-  distance,
-  rotate,
-  resolveCollision,
-} from "./utils";
+import { randomIntFromRange, distance, resolveCollision } from "./utils";
 // CSS IMPORT IN TS NUR ÜBER VITE MÖGLICH
 import "./styles/styles.css";
 
@@ -69,7 +64,7 @@ class Ball {
 
   update(ballArray: Ball[]): void {
     if (this.y + this.radius + this.velocity.y > canvas.height) {
-      //bounce bottom
+      //bounce bottom TODO:lookup
       this.velocity.y = -this.velocity.y;
       this.velocity.y *= friction;
       this.velocity.x *= friction;
@@ -77,12 +72,15 @@ class Ball {
       this.velocity.y += gravity;
     }
 
-    if (this.y + this.radius >= canvas.height) {
+    if (this.y - this.radius + this.velocity.y <= 0) {
       //bounce top
       this.velocity.y = -this.velocity.y * friction;
     }
 
-    if (this.x + this.radius >= canvas.width || this.x - this.radius <= 0) {
+    if (
+      this.x + this.radius + this.velocity.x >= canvas.width ||
+      this.x - this.radius + this.velocity.x <= 0
+    ) {
       //bounce left right
       this.velocity.x = -this.velocity.x * friction;
     }

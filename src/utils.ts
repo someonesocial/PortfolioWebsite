@@ -99,4 +99,4 @@ function resolveCollision(
   }
 }
 
-export { randomIntFromRange, distance, rotate, resolveCollision };
+export { randomIntFromRange, distance, resolveCollision };
