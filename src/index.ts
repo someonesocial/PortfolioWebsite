@@ -15,7 +15,7 @@ const mouse: { x: number; y: number } = {
   y: innerHeight / 2, // Initial vertical position of the mouse
 };
 
-const color: string = "#ff0000"; // Color for the balls (red)
+const color: string = "#fff"; // Color for the balls (red)
 
 const gravity = 0.1; // Gravity value that will affect the ball's vertical velocity
 
