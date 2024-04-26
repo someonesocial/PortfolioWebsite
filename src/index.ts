@@ -15,7 +15,7 @@ const mouse: { x: number; y: number } = {
   y: innerHeight / 2, // Initial vertical position of the mouse
 };
 
-const color: string = "#fff"; // Color for the balls (red)
+const color: string = "#fff"; // Color for the balls
 
 const gravity = 0.1; // Gravity value that will affect the ball's vertical velocity
 
@@ -115,13 +115,20 @@ class Ball {
 }
 
 // Implementation
+function calculateNumberOfBalls(): number {
+  const screenArea = innerWidth * innerHeight;
+  const ballArea = (20 * 10) ** 2; // Assuming each ball needs a space of 10 times its radius
+  return Math.floor(screenArea / ballArea);
+}
+
 let ballArray: Ball[] = []; // Array to hold all the balls
 
 function init(): void {
   // Initialization function to create balls
   ballArray = []; // Reset the ball array
+  const numberOfBalls = calculateNumberOfBalls(); // Use this to determine the number of balls
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < numberOfBalls; i++) {
     // Create 50 balls
     const radius = 20; // Set a fixed radius for all balls
     const mass = 1; // Set a fixed mass for all balls
