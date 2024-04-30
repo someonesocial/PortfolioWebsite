@@ -20,33 +20,6 @@ const color: string = "#fff"; // Color for the balls
 let gravity: number = 0; // Gravity value that will affect the ball's vertical velocity
 
 // Event Listeners
-movement_switch.addEventListener("change", (event: Event) => {
-  // The 'event' parameter is of type Event
-  let target = event.target as HTMLInputElement; // Type assertion to HTMLInputElement
-  if (target.checked) {
-    console.log("Movement added");
-    for (let i = 0; i < ballArray.length; i++) {
-      if (ballArray[i].velocity.x === 0 && ballArray[i].velocity.y === 0) {
-        // If the velocity is 0, set a random velocity
-        let velocity = {
-          x: randomIntFromRange(-2, 2),
-          y: randomIntFromRange(-2, 2),
-        };
-        ballArray[i].setVelocity(velocity);
-      }
-    }
-  } else {
-    console.log("Movement removed");
-    for (let i = 0; i < ballArray.length; i++) {
-      let velocity = {
-        x: 0,
-        y: 0,
-      };
-      ballArray[i].setVelocity(velocity);
-    }
-  }
-});
-
 gravity_switch.addEventListener("change", (event: Event) => {
   // The 'event' parameter is of type Event
   let target = event.target as HTMLInputElement; // Type assertion to HTMLInputElement
@@ -96,9 +69,6 @@ class Ball {
     this.radius = radius;
     this.mass = mass;
     this.color = color;
-  }
-  setVelocity(velocity: { x: number; y: number }): void {
-    this.velocity = velocity;
   }
 
   update(ballArray: Ball[]): void {
@@ -185,21 +155,22 @@ function init(): void {
       }
     }
 
-    let velocity = {
-      x: 0,
-      y: 0,
-    };
     // Random velocity for each ball
-    if (movement_switch.checked) {
-      // If movement is enabled
-      velocity = {
-        x: randomIntFromRange(-2, 2),
-        y: randomIntFromRange(-2, 2),
-      };
-    }
+    const velocity = {
+      x: randomIntFromRange(-2, 2),
+      y: randomIntFromRange(-2, 2),
+    };
 
     // Add the new ball to the array
     ballArray.push(new Ball(x, y, velocity, radius, mass, color));
+
+    //Render one Frame
+    c.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+
+    // Update and draw each ball
+    for (let i = 0; i < ballArray.length; i++) {
+      ballArray[i].update(ballArray); // Update the position and draw the ball
+    }
   }
 }
 
@@ -208,11 +179,14 @@ function animate(): void {
   // Animation function to update and draw balls
   requestAnimationFrame(animate); // Call animate again on the next frame
 
-  c.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
+  if (movement_switch.checked) {
+    //only render if movement is enabled
+    c.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
 
-  // Update and draw each ball
-  for (let i = 0; i < ballArray.length; i++) {
-    ballArray[i].update(ballArray); // Update the position and draw the ball
+    // Update and draw each ball
+    for (let i = 0; i < ballArray.length; i++) {
+      ballArray[i].update(ballArray); // Update the position and draw the ball
+    }
   }
 }
 
