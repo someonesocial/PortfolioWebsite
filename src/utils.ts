@@ -86,7 +86,7 @@ function resolveCollision(
       otherParticle.x - particle.x
     );
 
-    // Store mass in var for better readability in collision equation
+    // Store mass for better readability in collision equation
     const m1 = particle.mass;
     const m2 = otherParticle.mass;
 

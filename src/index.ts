@@ -1,5 +1,5 @@
 // Imports use relative file paths or Node.js package names
-import { canvas, c } from "./dom-utils"; // Importing canvas and context from a utility file
+import { canvas, c, movement_switch, gravity_switch } from "./dom-utils"; // Importing canvas and context from a utility file
 import { randomIntFromRange, distance, resolveCollision } from "./utils"; // Importing utility functions
 // CSS IMPORT IN TS NUR ÜBER VITE MÖGLICH
 import "./styles/styles.css"; // Importing CSS for styling
@@ -17,9 +17,48 @@ const mouse: { x: number; y: number } = {
 
 const color: string = "#fff"; // Color for the balls
 
-const gravity = 0.1; // Gravity value that will affect the ball's vertical velocity
+let gravity: number = 0; // Gravity value that will affect the ball's vertical velocity
 
 // Event Listeners
+movement_switch.addEventListener("change", (event: Event) => {
+  // The 'event' parameter is of type Event
+  let target = event.target as HTMLInputElement; // Type assertion to HTMLInputElement
+  if (target.checked) {
+    console.log("Movement added");
+    for (let i = 0; i < ballArray.length; i++) {
+      if (ballArray[i].velocity.x === 0 && ballArray[i].velocity.y === 0) {
+        // If the velocity is 0, set a random velocity
+        let velocity = {
+          x: randomIntFromRange(-2, 2),
+          y: randomIntFromRange(-2, 2),
+        };
+        ballArray[i].setVelocity(velocity);
+      }
+    }
+  } else {
+    console.log("Movement removed");
+    for (let i = 0; i < ballArray.length; i++) {
+      let velocity = {
+        x: 0,
+        y: 0,
+      };
+      ballArray[i].setVelocity(velocity);
+    }
+  }
+});
+
+gravity_switch.addEventListener("change", (event: Event) => {
+  // The 'event' parameter is of type Event
+  let target = event.target as HTMLInputElement; // Type assertion to HTMLInputElement
+  if (target.checked) {
+    console.log("Gravity added");
+    gravity = 0.2;
+  } else {
+    console.log("Gravity removed");
+    gravity = 0;
+  }
+});
+
 addEventListener("mousemove", (event: MouseEvent) => {
   mouse.x = event.clientX; // Update mouse x position
   mouse.y = event.clientY; // Update mouse y position
@@ -30,10 +69,6 @@ addEventListener("resize", () => {
   canvas.height = innerHeight; // Update canvas height on window resize
 
   init(); // Re-initialize the animation on window resize
-});
-
-addEventListener("click", () => {
-  init(); // Re-initialize the animation on mouse click
 });
 
 // Objects
@@ -61,6 +96,9 @@ class Ball {
     this.radius = radius;
     this.mass = mass;
     this.color = color;
+  }
+  setVelocity(velocity: { x: number; y: number }): void {
+    this.velocity = velocity;
   }
 
   update(ballArray: Ball[]): void {
@@ -147,11 +185,18 @@ function init(): void {
       }
     }
 
-    // Random velocity for each ball
-    const velocity = {
-      x: randomIntFromRange(-2, 2),
-      y: randomIntFromRange(-2, 2),
+    let velocity = {
+      x: 0,
+      y: 0,
     };
+    // Random velocity for each ball
+    if (movement_switch.checked) {
+      // If movement is enabled
+      velocity = {
+        x: randomIntFromRange(-2, 2),
+        y: randomIntFromRange(-2, 2),
+      };
+    }
 
     // Add the new ball to the array
     ballArray.push(new Ball(x, y, velocity, radius, mass, color));

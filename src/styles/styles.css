@@ -46,65 +46,73 @@ h2 {
   text-align: center;
   margin: 40px 0px;
 }
+
+h3 {
+  font-style: italic;
+  text-align: center;
+  margin: 40px 0px;
+}
+
+.container {
+  display: flex; /* Establishes a flex container for horizontal centering */
+  justify-content: center; /* Centers the content horizontally */
+  align-items: center; /* Centers the content vertically */
+}
+
+/* The p element */
+.container p {
+  margin-right: 10px; /* Adds a right margin to the switch */
+}
+
+/* The label element */
+.container .switch {
+  display: flex; /* Uses flex for easy centering */
+  align-items: center; /* Vertically centers the content */
+  gap: 10px; /* Space between the elements */
+}
+
+/* The switch element */
 .switch {
-  /* Das label-Element */
-  position: relative; /* Um im nächsten Schritt den runden Button mit position:absolute festzusetzen */
-  width: 64px;
-  height: 34px;
-  display: grid;
-  grid-template-columns: 230px 64px;
-  grid-template-rows: 34px;
-  grid-template-areas: "settings switch";
+  display: flex; /* Uses flex for easy centering */
+  align-items: center; /* Centers content vertically */
+  gap: 10px; /* Space between the elements */
+}
+
+.switch input {
+  display: none; /* Hides the actual checkbox element */
 }
 
 .switch span {
-  /* Der graue Untergrund des Schalters */
-  position: absolute;
-  background-color: #ccc;
-  border-radius: 17px;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transition: background-color 0.4s;
-  grid-area: switch;
+  background-color: #ccc; /* The grey background of the switch */
+  border-radius: 17px; /* Rounded corners for the switch */
+  cursor: pointer; /* Pointer cursor on hover over the switch */
+  height: 34px;
+  width: 64px; /* Size of the switch */
+  position: relative; /* For positioning the circular button */
+  transition: background-color 0.4s; /* Transition effect for the background */
 }
 
 .switch span::before {
-  /* Der kreisrunde Button im Switch */
-  background-color: white;
-  border-radius: 50%;
-  content: "";
+  content: ""; /* The circular button inside the switch */
   position: absolute;
   left: 4px;
   bottom: 4px;
   height: 26px;
   width: 26px;
+  background-color: white; /* Background color of the button */
+  border-radius: 50%; /* Circle shape */
+  transition: transform 0.4s; /* Transition effect for movement */
 }
 
 input:checked + span {
-  background-color: darkgreen;
+  background-color: darkgreen; /* Background color of the switch when checked */
 }
 
 input:checked + span::before {
-  transform: translateX(30px);
-}
-
-.switch input {
-  display: none;
+  transform: translateX(30px); /* Moves the button to the right when checked */
 }
 
 .switch p {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  height: 30px;
-  margin-top: 0;
-}
-input:checked + p::before {
-  content: "Ein";
-}
-
-input:checked ~ p::after {
-  content: " Ein";
+  margin: 0; /* Removes default spacing */
+  padding: 0; /* Ensures no additional spacing is present */
 }
