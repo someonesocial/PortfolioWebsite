@@ -1,13 +1,13 @@
 /**
- * Generates a random integer within a specified range.
+ * Generates a random float within a specified range.
  *
  * @param  min: number | The lower bound of the range (inclusive).
  * @param  max: number | The upper bound of the range (inclusive).
- * @return number | A random integer between the min and max values.
+ * @return number | A random float between the min and max values.
  */
 
-function randomIntFromRange(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1) + min);
+function randomFloatFromRange(min: number, max: number): number {
+  return Math.random() * (max - min) + min;
 }
 
 /**
@@ -117,4 +117,4 @@ function resolveCollision(
   }
 }
 
-export { randomIntFromRange, distance, resolveCollision };
+export { randomFloatFromRange, distance, resolveCollision };

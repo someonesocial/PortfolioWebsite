@@ -1,6 +1,6 @@
 // Imports use relative file paths or Node.js package names
 import { canvas, c, movement_switch, gravity_switch } from "./dom-utils"; // Importing canvas and context from a utility file
-import { randomIntFromRange, distance, resolveCollision } from "./utils"; // Importing utility functions
+import { randomFloatFromRange, distance, resolveCollision } from "./utils"; // Importing utility functions
 // CSS IMPORT IN TS NUR ÜBER VITE MÖGLICH
 import "./styles/styles.css"; // Importing CSS for styling
 
@@ -25,7 +25,7 @@ gravity_switch.addEventListener("change", (event: Event) => {
   let target = event.target as HTMLInputElement; // Type assertion to HTMLInputElement
   if (target.checked) {
     console.log("Gravity added");
-    gravity = 0.2;
+    gravity = 0.16;
   } else {
     console.log("Gravity removed");
     gravity = 0;
@@ -140,15 +140,15 @@ function init(): void {
     // Create 50 balls
     const radius = 20; // Set a fixed radius for all balls
     const mass = 1; // Set a fixed mass for all balls
-    let x = randomIntFromRange(radius, canvas.width - radius); // Random x position
-    let y = randomIntFromRange(radius, canvas.height - radius); // Random y position
+    let x = randomFloatFromRange(radius, canvas.width - radius); // Random x position
+    let y = randomFloatFromRange(radius, canvas.height - radius); // Random y position
 
     // Avoid overlapping balls on creation
     if (i !== 0) {
       for (let j = 0; j < ballArray.length; j++) {
         if (distance(x, y, ballArray[j].x, ballArray[j].y) - radius * 2 < 0) {
-          x = randomIntFromRange(radius, canvas.width - radius);
-          y = randomIntFromRange(radius, canvas.height - radius);
+          x = randomFloatFromRange(radius, canvas.width - radius);
+          y = randomFloatFromRange(radius, canvas.height - radius);
 
           j = -1; // Reset loop to check for overlaps again
         }
@@ -157,9 +157,11 @@ function init(): void {
 
     // Random velocity for each ball
     const velocity = {
-      x: randomIntFromRange(-2, 2),
-      y: randomIntFromRange(-2, 2),
+      x: randomFloatFromRange(-1.5, 1.5),
+      y: randomFloatFromRange(-1.5, 1.5),
     };
+
+    console.log(velocity.x, velocity.y);
 
     // Add the new ball to the array
     ballArray.push(new Ball(x, y, velocity, radius, mass, color));
