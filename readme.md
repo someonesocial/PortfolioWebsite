@@ -5,7 +5,44 @@
 Inspired by this [Machine](https://xkcd.com/2916) from xkcd, I thought it could be the basis for a cool background on an interactive portfolio site.
 The original uses [Rapier](https://rapier.rs) as the physics engine, but after having problems installing it and its prerequisite 😒 I thought it would be cool and educational for me to code the physics from scratch using HTML Canvas. Little did I know that this would quickly turn into a maths and physics project.
 
-## Technical documentation
+## Technical Documentation: Canvas-Based Physics Simulation
+### Overview
+This TypeScript module is designed to simulate the motion and collision of balls within a canvas element in a web browser. It includes gravity and movement toggles, collision detection, and dynamic canvas resizing.
+
+### Module Imports
+DOM Utilities: Provides access to the canvas context (c), and toggle switches for movement and gravity (movement_switch, gravity_switch).
+Utility Functions: Includes functions for generating random numbers within a range (randomFloatFromRange), calculating the distance between two points (distance), and resolving collisions between particles (resolveCollision).
+Styles: A separate CSS file for styling (styles.css).
+
+### Global Variables
+canvas: The HTML canvas element where the simulation runs.
+mouse: An object to track the mouse position on the canvas (during the development i had planned some interactions to be controlled with the mouse, but later decided against it).
+color: The color of the balls in the simulation.
+gravity: A variable to control the gravity effect in the simulation.
+
+### Event Listeners
+Gravity Toggle: Listens for changes on the gravity_switch and updates the gravity variable accordingly.
+Mouse Movement: Updates the mouse object with the current mouse position.
+Window Resize: Adjusts the canvas dimensions and re-initializes the simulation.
+
+### Ball Class
+Defines the properties and methods for individual balls in the simulation:
+
+Properties: Position (x, y), velocity, radius, mass, and color.
+Methods:
+update(): Updates the ball’s position and handles collisions with other balls.
+draw(): Renders the ball on the canvas.
+
+### Simulation Functions
+calculateNumberOfBalls(): Determines the number of balls to display based on the canvas area.
+init(): Initializes the simulation by creating and positioning the balls.
+animate(): The main animation loop that updates and redraws the balls on each frame.
+
+### Utility Functions
+randomFloatFromRange(min, max): Returns a random floating-point number between min and max.
+distance(x1, y1, x2, y2): Calculates the distance between two points.
+rotate(velocity, angle): Rotates a velocity vector by a given angle.
+resolveCollision(particle, otherParticle): Adjusts the velocities of two colliding particles based on their masses and velocities.
 
 ## Reflection
 
