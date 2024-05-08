@@ -104,7 +104,12 @@ There were times during development when I wished I had used a physics library. 
 ## Conclusion
 
 The Canvas-Based Physics Simulation combines creativity, physics, and modular design. As you explore this project, imagine its potential as a captivating portfolio background. 🚀🎨
+
+
+
 ---
+
+
 
 ## How to work with Vite
 
