@@ -5,10 +5,6 @@
 Inspired by this [Machine](https://xkcd.com/2916) from xkcd, I thought it could be the basis for a cool background on an interactive portfolio site.
 The original uses [Rapier](https://rapier.rs) as the physics engine, but after having problems installing it and its prerequisite 😒 I thought it would be cool and educational for me to code the physics from scratch using HTML Canvas. Little did I know that this would quickly turn into a maths and physics project.
 
-## Technical Documentation: Canvas-Based Physics Simulation
-### Overview
-This TypeScript module is designed to simulate the motion and collision of balls within a canvas element in a web browser. It includes gravity and movement toggles, collision detection, and dynamic canvas resizing.
-
 # Canvas-Based Physics Simulation
 
 ## Overview
@@ -96,8 +92,7 @@ The modular design of the `Ball` class allows for easy expansion and alteration.
 ## Reflection
 
 - **Challenges**:
-  - Debugging issues (e.g., balls getting stuck on canvas edges).
-  - Manual collision resolution without a physics library.
+There were times during development when I wished I had used a physics library. For example, some of the balls would get stuck on the sides because when I was calculating the collision I forgot to include their current velocity, which is added after the check but before the draw function. Bugs like this were time-consuming to diagnose.
 
 ## Future Enhancements
 
@@ -112,12 +107,6 @@ The modular design of the `Ball` class allows for easy expansion and alteration.
 
 The Canvas-Based Physics Simulation combines creativity, physics, and modular design. As you explore this project, imagine its potential as a captivating portfolio background. 🚀🎨
 ---
-
-Feel free to expand further on specific sections or add any additional insights you'd like to share about your project! 🌟
-
-## Reflection
-
-There were times during development when I wished I had used a physics library. For example, some of the balls would get stuck on the sides because when I was calculating the collision I forgot to include their current velocity, which is added after the check but before the draw function. Bugs like this were time-consuming to diagnose.
 
 ## How to work with Vite
 
