@@ -5,8 +5,6 @@
 Inspired by this [Machine](https://xkcd.com/2916) from xkcd, I thought it could be the basis for a cool background on an interactive portfolio site.
 The original uses [Rapier](https://rapier.rs) as the physics engine, but after having problems installing it and its prerequisite 😒 I thought it would be cool and educational for me to code the physics from scratch using HTML Canvas. Little did I know that this would quickly turn into a maths and physics project.
 
-# Canvas-Based Physics Simulation
-
 ## Overview
 
 The **Canvas-Based Physics Simulation** is an interactive TypeScript project that simulates the motion and collision of bouncing balls within an HTML canvas. Inspired by the xkcd comic "Machine," this project serves as an engaging background for an interactive portfolio site. The simulation includes gravity, collision detection, and dynamic resizing.
