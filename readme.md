@@ -9,40 +9,111 @@ The original uses [Rapier](https://rapier.rs) as the physics engine, but after h
 ### Overview
 This TypeScript module is designed to simulate the motion and collision of balls within a canvas element in a web browser. It includes gravity and movement toggles, collision detection, and dynamic canvas resizing.
 
-### Module Imports
-DOM Utilities: Provides access to the canvas context (c), and toggle switches for movement and gravity (movement_switch, gravity_switch).
-Utility Functions: Includes functions for generating random numbers within a range (randomFloatFromRange), calculating the distance between two points (distance), and resolving collisions between particles (resolveCollision).
-Styles: A separate CSS file for styling (styles.css).
+# Canvas-Based Physics Simulation
 
-### Global Variables
-canvas: The HTML canvas element where the simulation runs.
-mouse: An object to track the mouse position on the canvas (during the development i had planned some interactions to be controlled with the mouse, but later decided against it).
-color: The color of the balls in the simulation.
-gravity: A variable to control the gravity effect in the simulation.
+## Overview
 
-### Event Listeners
-Gravity Toggle: Listens for changes on the gravity_switch and updates the gravity variable accordingly.
-Mouse Movement: Updates the mouse object with the current mouse position.
-Window Resize: Adjusts the canvas dimensions and re-initializes the simulation.
+The **Canvas-Based Physics Simulation** is an interactive TypeScript project that simulates the motion and collision of bouncing balls within an HTML canvas. Inspired by the xkcd comic "Machine," this project serves as an engaging background for an interactive portfolio site. The simulation includes gravity, collision detection, and dynamic resizing.
 
-### Ball Class
-Defines the properties and methods for individual balls in the simulation:
+## Table of Contents
 
-Properties: Position (x, y), velocity, radius, mass, and color.
-Methods:
-update(): Updates the ball’s position and handles collisions with other balls.
-draw(): Renders the ball on the canvas.
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+3. [Project Structure](#project-structure)
+4. [Ball Class](#ball-class)
+5. [Simulation Logic](#simulation-logic)
+6. [Reflection](#reflection)
+7. [Future Enhancements](#future-enhancements)
+8. [Conclusion](#conclusion)
 
-### Simulation Functions
-calculateNumberOfBalls(): Determines the number of balls to display based on the canvas area.
-init(): Initializes the simulation by creating and positioning the balls.
-animate(): The main animation loop that updates and redraws the balls on each frame.
+---
 
-### Utility Functions
-randomFloatFromRange(min, max): Returns a random floating-point number between min and max.
-distance(x1, y1, x2, y2): Calculates the distance between two points.
-rotate(velocity, angle): Rotates a velocity vector by a given angle.
-resolveCollision(particle, otherParticle): Adjusts the velocities of two colliding particles based on their masses and velocities.
+## Introduction
+
+The Canvas-Based Physics Simulation aims to create an eye-catching visual experience for portfolio websites. By animating bouncing balls, we demonstrate fundamental physics concepts while showcasing creativity and technical skills.
+
+## Getting Started
+
+1. **Installation**:
+   - Clone this repository to your local machine.
+   - Open the project folder in your preferred code editor.
+
+2. **Running the Simulation**:
+   - Open `index.html` in a web browser.
+   - Observe the bouncing balls within the canvas.
+
+## Project Structure
+
+The project is organized into several key components:
+
+1. **DOM Utilities**:
+   - Provides access to the canvas context (`c`).
+   - Manages toggle switches for movement (`movement_switch`) and gravity (`gravity_switch`).
+
+2. **Utility Functions**:
+   - `randomFloatFromRange(min, max)`: Generates a random floating-point number within a specified range.
+   - `distance(x1, y1, x2, y2)`: Calculates the distance between two points.
+   - `rotate(velocity, angle)`: Rotates a velocity vector by a given angle.
+   - `resolveCollision(particle, otherParticle)`: Handles collision resolution between two particles.
+
+3. **Styles**:
+   - The `styles.css` file provides styling for the canvas and balls.
+
+## Ball Class
+
+The `Ball` class encapsulates the behavior of individual balls:
+
+- **Properties**:
+  - `x`, `y`: Position coordinates.
+  - `velocity`: Object with `x` and `y` components representing the ball's speed.
+  - `radius`: Size of the ball.
+  - `mass`: Mass of the ball (used for collision calculations).
+  - `color`: Color of the ball.
+
+- **Methods**:
+  - `update()`: Updates the ball's position, handles collisions, and applies gravity.
+  - `draw()`: Renders the ball on the canvas.
+
+The modular design of the `Ball` class allows for easy expansion and alteration. For example:
+
+- **Adding New Properties**:
+  - To introduce additional ball properties (e.g., elasticity, texture), simply extend the class.
+
+- **Custom Behavior**:
+  - Create subclasses (e.g., `BouncingBall`, `ElasticBall`) with specialized behavior.
+  - Override methods (e.g., `update()`) to implement custom rules.
+
+## Simulation Logic
+
+1. **Initialization (`init()`)**:
+   - Determines the number of balls based on the canvas area.
+   - Ensures non-overlapping initial positions.
+
+2. **Animation Loop (`animate()`)**:
+   - Updates and redraws the balls on each frame.
+   - Controlled by the `movement_switch`.
+
+## Reflection
+
+- **Challenges**:
+  - Debugging issues (e.g., balls getting stuck on canvas edges).
+  - Manual collision resolution without a physics library.
+
+## Future Enhancements
+
+1. **Interactive Features**:
+   - Mouse interactions (e.g., dragging balls).
+   - User-configurable parameters (e.g., elasticity, gravity strength).
+
+2. **Physics Engine Integration**:
+   - Consider using a physics library (e.g., Matter.js) for more robust behavior.
+
+## Conclusion
+
+The Canvas-Based Physics Simulation combines creativity, physics, and modular design. As you explore this project, imagine its potential as a captivating portfolio background. 🚀🎨
+---
+
+Feel free to expand further on specific sections or add any additional insights you'd like to share about your project! 🌟
 
 ## Reflection
 
