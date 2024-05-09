@@ -5,88 +5,114 @@
 Inspired by this [Machine](https://xkcd.com/2916) from xkcd, I thought it could be the basis for a cool background on an interactive portfolio site.
 The original uses [Rapier](https://rapier.rs) as the physics engine, but after having problems installing it and its prerequisite 😒 I thought it would be cool and educational for me to code the physics from scratch using HTML Canvas. Little did I know that this would quickly turn into a maths and physics project.
 
-## Technical Documentation: Canvas-Based Physics Simulation
+## Overview
 
-### Overview
+The **Canvas-Based Physics Simulation** is an interactive TypeScript project that simulates the motion and collision of bouncing balls within an HTML canvas. Inspired by the xkcd comic "Machine," this project serves as an engaging background for an interactive portfolio site. The simulation includes gravity, collision detection, and dynamic resizing.
 
-This TypeScript module is designed to simulate the motion and collision of balls within a canvas element in a web browser. It includes gravity and movement toggles, collision detection, and dynamic canvas resizing.
+## Table of Contents
 
-### Module Imports
+1. [Introduction](#introduction)
+2. [Getting Started](#getting-started)
+3. [Project Structure](#project-structure)
+4. [Ball Class](#ball-class)
+5. [Simulation Logic](#simulation-logic)
+6. [Reflection](#reflection)
+7. [Future Enhancements](#future-enhancements)
+8. [Conclusion](#conclusion)
 
-- DOM Utilities: Provides access to the canvas context (c), and toggle switches for movement and gravity (movement_switch, gravity_switch).
-- Utility Functions: Includes functions for generating random numbers within a range (randomFloatFromRange), calculating the distance between two points (distance), and resolving collisions between particles (resolveCollision).
-- Styles: A separate CSS file for styling (styles.css).
+---
 
-### Global Variables
+## Introduction
 
-- canvas: The HTML canvas element where the simulation runs.
-- mouse: An object to track the mouse position on the canvas (during the development i had planned some interactions to be controlled with the mouse, but later decided against it).
-- color: The color of the balls in the simulation.
-- gravity: A variable to control the gravity effect in the simulation.
+The Canvas-Based Physics Simulation aims to create an eye-catching visual experience for portfolio websites. By animating bouncing balls, we demonstrate fundamental physics concepts while showcasing creativity and technical skills.
 
-### Event Listeners
+## Getting Started
 
-- Gravity Toggle: Listens for changes on the gravity_switch and updates the gravity variable accordingly.
-- Mouse Movement: Updates the mouse object with the current mouse position (currently not used).
-- Window Resize: Adjusts the canvas dimensions and re-initializes the simulation.
+1. **Installation**:
 
-### Ball Class
+   - Clone this repository to your local machine.
+   - Open the project folder in your preferred code editor.
 
-Defines the properties and methods for individual balls in the simulation:
+2. **Running the Simulation**:
+   - Open `index.html` in a web browser.
+   - Observe the bouncing balls within the canvas.
 
-- Properties: Position (x, y), velocity, radius, mass, and color.
-- Methods:
-  - update(): Updates the ball’s position and handles collisions with other balls.
-  - draw(): Renders the ball on the canvas.
+## Project Structure
 
-### Simulation Functions
+The project is organized into several key components:
 
-- calculateNumberOfBalls(): Determines the number of balls to display based on the canvas area.
-- init(): Initializes the simulation by creating and positioning the balls.
-- animate(): The main animation loop that updates and redraws the balls on each frame.
+1. **DOM Utilities**:
 
-### Utility Functions
+   - Provides access to the canvas context (`c`).
+   - Manages toggle switches for movement (`movement_switch`) and gravity (`gravity_switch`).
 
-- randomFloatFromRange(min, max): Returns a random floating-point number between min and max.
-- distance(x1, y1, x2, y2): Calculates the distance between two points.
-- rotate(velocity, angle): Rotates a velocity vector by a given angle.
-- resolveCollision(particle, otherParticle): Adjusts the velocities of two colliding particles based on their masses and velocities.
+2. **Utility Functions**:
 
-### Collisions with each other
+   - `randomFloatFromRange(min, max)`: Generates a random floating-point number within a specified range.
+   - `distance(x1, y1, x2, y2)`: Calculates the distance between two points.
+   - `rotate(velocity, angle)`: Rotates a velocity vector by a given angle.
+   - `resolveCollision(particle, otherParticle)`: Handles collision resolution between two particles.
 
-#### Collision Detection:
+3. **Styles**:
+   - The `styles.css` file provides styling for the canvas and balls.
 
-The collision detection occurs within the update() method of the Ball class.
-For each ball, the code checks if it collides with any other ball in the ballArray.
-If the distance between the centers of two balls is less than the sum of their radii, a collision is detected.
+## Ball Class
 
-#### Collision Resolution:
+The `Ball` class encapsulates the behavior of individual balls:
 
-When a collision is detected, the resolveCollision(particle, otherParticle) function is called.
-This function adjusts the velocities of the colliding balls based on their masses and initial velocities.
-The collision resolution ensures that the balls bounce off each other realistically.
+- **Properties**:
 
-#### Mathematical Underpinnings:
+  - `x`, `y`: Position coordinates.
+  - `velocity`: Object with `x` and `y` components representing the ball's speed.
+  - `radius`: Size of the ball.
+  - `mass`: Mass of the ball (used for collision calculations).
+  - `color`: Color of the ball.
 
-The collision resolution involves concepts from physics and mathematics:
+- **Methods**:
+  - `update()`: Updates the ball's position, handles collisions, and applies gravity.
+  - `draw()`: Renders the ball on the canvas.
 
-- Conservation of Momentum: The total momentum before and after the collision remains constant.
-- Elastic Collision: The collision is assumed to be elastic, meaning kinetic energy is conserved.
-- Vector Rotation: Velocities are rotated to a common reference frame to simplify calculations.
-- Impulse and Momentum: Impulse (change in momentum) is used to update velocities.
+The modular design of the `Ball` class allows for easy expansion and alteration. For example:
 
-#### Steps in Collision Resolution:
+- **Adding New Properties**:
 
-- Calculate the relative velocity vector between the two balls.
-- Determine the collision angle (angle of impact) using trigonometry.
-- Rotate the velocity vectors of both balls to align with the collision angle.
-- Apply the 1D collision equations along this axis (x-direction).
-- Rotate the updated velocities back to their original orientation.
-- Update the velocities of both balls.
+  - To introduce additional ball properties (e.g., elasticity, texture), simply extend the class.
+
+- **Custom Behavior**:
+  - Create subclasses (e.g., `BouncingBall`, `ElasticBall`) with specialized behavior.
+  - Override methods (e.g., `update()`) to implement custom rules.
+
+## Simulation Logic
+
+1. **Initialization (`init()`)**:
+
+   - Determines the number of balls based on the canvas area.
+   - Ensures non-overlapping initial positions.
+
+2. **Animation Loop (`animate()`)**:
+   - Updates and redraws the balls on each frame.
+   - Controlled by the `movement_switch`.
 
 ## Reflection
 
-There were times during development when I wished I had used a physics library. For example, some of the balls would get stuck on the sides because when I was calculating the collision I forgot to include their current velocity, which is added after the check but before the draw function. Bugs like this were time-consuming to diagnose.
+- **Challenges**:
+  There were times during development when I wished I had used a physics library. For example, some of the balls would get stuck on the sides because when I was calculating the collision I forgot to include their current velocity, which is added after the check but before the draw function. Bugs like this were time-consuming to diagnose.
+
+## Future Enhancements
+
+1. **Interactive Features**:
+
+   - Mouse interactions (e.g., dragging balls).
+   - User-configurable parameters (e.g., elasticity, gravity strength).
+
+2. **Physics Engine Integration**:
+   - Consider using a physics library (e.g., Matter.js) for more robust behavior.
+
+## Conclusion
+
+The Canvas-Based Physics Simulation combines creativity, physics, and modular design. As you explore this project, imagine its potential as a captivating portfolio background. 🚀🎨
+
+---
 
 ## How to work with Vite
 
@@ -108,7 +134,6 @@ Have a modern version of Node.installed. Last check was with v20.11
 
 - After you did set up your application, run `npm run build` to compile it. If there are no erros, there should be a "build"-folder in your project folder
 - take a look at `index.html` - it should already have a script file connected to your TypeScript (The browser can only run JavaScript)
--
 
 Write any source files in typescript inside the source folder, the main file being index.ts as entry file for vite.
 
