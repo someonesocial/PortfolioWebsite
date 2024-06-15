@@ -42,6 +42,11 @@ addEventListener("resize", () => {
   canvas.height = innerHeight; // Update canvas height on window resize
 
   //init(); // Re-initialize the animation on window resize
+
+  // Update and draw each ball
+  for (let i = 0; i < ballArray.length; i++) {
+    ballArray[i].update(ballArray); // Update the position and draw the ball
+  }
 });
 
 // Objects
