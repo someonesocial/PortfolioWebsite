@@ -20,8 +20,8 @@ canvas {
 }
 
 .wrapper {
-  margin: 8vh auto; /* Centering horizontally */
-  width: calc(100vw - 16vh);
+  margin: 3vh auto; /* Centering horizontally */
+  width: calc(100vw - 6vh);
   max-width: 720px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
