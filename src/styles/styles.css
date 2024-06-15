@@ -1,6 +1,11 @@
+@font-face {
+  font-family: Anton;
+  src: url("/Anton-Regular.ttf");
+}
+
 body {
   margin: 0;
-  font-family: Helvetica, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   color: black;
 }
 
@@ -36,7 +41,7 @@ canvas {
 
 h1 {
   font-size: 2rem;
-  font-family: Impact;
+  font-family: Anton, Impact;
   text-align: left;
   margin: 0;
 }

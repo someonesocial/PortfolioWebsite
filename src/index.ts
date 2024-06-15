@@ -41,7 +41,7 @@ addEventListener("resize", () => {
   canvas.width = innerWidth; // Update canvas width on window resize
   canvas.height = innerHeight; // Update canvas height on window resize
 
-  init(); // Re-initialize the animation on window resize
+  //init(); // Re-initialize the animation on window resize
 });
 
 // Objects
