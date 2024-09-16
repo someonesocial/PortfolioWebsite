@@ -16,6 +16,7 @@ html {
     rgba(164, 255, 214, 1) 0%,
     rgba(208, 166, 255, 1) 100%
   );
+  background-attachment: fixed;
 }
 
 canvas {
