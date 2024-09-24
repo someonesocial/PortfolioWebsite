@@ -56,13 +56,16 @@ h2 {
 }
 
 h3 {
-  font-style: italic;
   text-align: center;
   margin: 40px 0px;
 }
 
 p {
   font-weight: bold;
+}
+
+.centeredP {
+  text-align: center;
 }
 
 hr {
