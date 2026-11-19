@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Paul Klemm, Consultant Marketing Automation at hansgrohe, focused on project management, technical consulting and practical tools." />
     <title>Paul Klemm</title>
     <!--ACHTUNG - DAS GEHT NUR WEGEN VITE! IN "ECHT" KANN KEIN TS IM BROWSER AUSGEFÜHRT WERDEN -->
     <script defer type="module" src="/src/index.ts"></script>
@@ -12,69 +13,27 @@
     <canvas></canvas>
     <div class="wrapper">
       <h1>Paul Klemm</h1>
-      <img
-        class="profile-picture"
-        src="/profile-picture.svg"
-        alt="square logo with letters P A U L on top of each other"
-      />
-      <h2>
-        Hello! Im an online media student from Germany, passionate about
-        technology.
-      </h2>
-      <h3>
-        Take a look at my projects, read more, get in touch or just stay and
-        admire the marbles on screen!
-      </h3>
+      <img class="profile-picture" src="/profile-picture.svg" alt="square logo with letters P A U L on top of each other" />
+      <h2>Consultant Marketing Automation<br />at hansgrohe.</h2>
+      <h3>Hi, I’m Paul. I work on project management, technical consulting and practical tools that fit real needs. Welcome to my page.</h3>
+      <p class="quick-contact"><a href="mailto:info@paulklemm.de">info@paulklemm.de</a></p>
       <hr />
-      <p>Life without movement is boring.</p>
-      <div class="container">
-        <p>Let's get things moving!</p>
-        <label class="switch">
-          <input type="checkbox" id="movement" />
-          <span></span>
-        </label>
-      </div>
-      <p>
-        Okay, things are moving now. There's no challenge, though. Everything
-        just floats around without any external forces. That's not how the real
-        world works...
-      </p>
-      <div class="container">
-        <p>Add Gravity!</p>
-        <label class="switch">
-          <input type="checkbox" id="gravity" />
-          <span></span>
-        </label>
-      </div>
-      <p>
-        Now we're talking! Gravity is pulling the marbles down. Collisions are
-        happening just like in the real world, and there's constant change, so
-        things will never get boring.
-      </p>
+      <h3 id="projects">Selected projects</h3>
+      <div class="project-card"><p class="project-label">Bachelor thesis · Grade 1.0 · Excellent</p><h4>AI image tagging for media assets</h4><p>At hansgrohe, I developed and implemented an AI image-tagging system for all media assets and documented the project in my bachelor thesis at DHBW Mosbach.</p><p><a href="/Bachelorarbeit_Paul-Klemm.pdf" target="_blank" rel="noreferrer">Read the bachelor thesis ↗</a></p></div>
+      <div class="project-card"><p class="project-label">Android development</p><h4>xnorroid</h4><p>My Android projects and apps.</p><p><a href="https://xnorroid.com/" target="_blank" rel="noreferrer">Visit xnorroid ↗</a></p></div>
+      <div class="project-card github-card"><p class="project-label">Code &amp; experiments</p><h4>GitHub</h4><p>More projects and source code.</p><p><a href="https://github.com/someonesocial" target="_blank" rel="noreferrer">Open GitHub ↗</a></p></div>
       <hr />
-      <h3>Projects:</h3>
-      <p>
-        A project you have already seen. It is this page! The physics simulation
-        in the background was coded from scratch in Typescript without any
-        external libraries and made interactive with animated CSS switches.
-      </p>
-      <h4>For more of my projects, you can visit:</h4>
-      <p class="centeredP">
-        <a href="https://github.com/someonesocial">GitHub</a><br />
-        where you can view many more software development projects that I have
-        worked on.
-      </p>
-      <p class="centeredP">or</p>
-      <p class="centeredP">
-        <a href="https://xnorroid.com/">xnorroid</a><br />
-        my Android development website, where I present two Android apps I have
-        developed.
-      </p>
+      <h3>The background</h3>
+      <p class="interaction-intro">I built these moving marbles from scratch in TypeScript. A simple idea became an interactive background for this portfolio.</p>
+      <div class="container"><p>Let's get things moving!</p><label class="switch"><input type="checkbox" id="movement" aria-label="Toggle motion" checked /><span></span></label></div>
+      <div class="container"><p>Add Gravity!</p><label class="switch"><input type="checkbox" id="gravity" aria-label="Toggle gravity" /><span></span></label></div>
+      <hr />
+      <h3>About me</h3>
+      <p>I like turning complex requirements into clear, useful solutions. I enjoy understanding how systems work, bringing structure to projects, and building tools that people can use in their daily work. My background in Online Media combines communication, technical understanding and hands-on implementation.</p>
       <hr />
       <h3>Get in Touch</h3>
-      <p>For inquiries or collaboration opportunities, please email me at: <a href="mailto:info@paulklemm.de">info@paulklemm.de</a></p>
-      <footer>
-        <p>© 2024 Paul Klemm. All rights reserved.</p>
+      <p><a href="mailto:info@paulklemm.de">Email me</a> about a project, opportunity or question.</p>
+      <footer><p>© 2026 Paul Klemm</p></footer>
     </div>
   </body>
 </html>

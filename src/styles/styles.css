@@ -1,152 +1,45 @@
-@font-face {
-  font-family: Anton;
-  src: url("/Anton-Regular.ttf");
+@font-face { font-family: Anton; src: url("/Anton-Regular.ttf"); }
+
+body { margin: 0; font-family: Helvetica, Arial, sans-serif; color: black; }
+
+html { background: rgb(164, 255, 214); background: linear-gradient(135deg, rgba(164, 255, 214, 1) 0%, rgba(208, 166, 255, 1) 100%); background-attachment: fixed; }
+
+canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+
+.wrapper { position: relative; z-index: 1; margin: 3vh auto; width: calc(100vw - 6vh); max-width: 720px; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.18); border-radius: 16px; background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); border: 1px solid rgba(0, 0, 0, 0.28); box-sizing: border-box; padding: 2rem; overflow-y: auto; }
+
+
+h1 { font-size: 2rem; font-family: Anton, Impact; text-align: left; margin: 0; }
+h2 { text-align: center; margin: 40px 0; }
+h3 { text-align: center; margin: 40px 0; }
+p { font-weight: bold; }
+hr { border: 2px solid black; border-radius: 5px; margin: 40px 0; }
+img { display: block; margin-left: auto; margin-right: auto; width: 30%; margin-top: 40px; }
+
+.container { display: flex; justify-content: center; align-items: center; }
+.container p { margin-right: 10px; }
+.container .switch { display: flex; align-items: center; gap: 10px; }
+.switch { display: flex; align-items: center; gap: 10px; }
+.switch input { display: none; }
+.switch span { background-color: rgba(255, 255, 255, 0.28); border: 1px solid rgba(0, 0, 0, 0.35); border-radius: 17px; cursor: pointer; height: 28px; width: 52px; position: relative; box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12); transition: background-color 0.25s, border-color 0.25s; }
+.switch span::before { content: ""; position: absolute; left: 4px; top: 50%; height: 18px; width: 18px; background-color: rgba(255, 255, 255, 0.95); border-radius: 50%; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2); transform: translateY(-50%); transition: transform 0.25s; }
+input:checked + span { background-color: rgba(164, 255, 214, 0.7); border-color: rgba(0, 0, 0, 0.5); }
+input:checked + span::before { transform: translate(24px, -50%); }
+
+.project-card { margin: 24px 0; padding: 18px 22px; border: 1px solid rgba(0, 0, 0, 0.35); border-radius: 10px; background: rgba(255, 255, 255, 0.18); }
+.project-card h4 { margin: 8px 0 14px; font-size: 1.35rem; }
+.project-card p { margin-bottom: 8px; line-height: 1.45; }
+.project-label { margin: 0; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; }
+.github-card { background: rgba(255, 255, 255, 0.28); }
+.quick-contact { text-align: center; margin: 24px 0; font-size: 1.05rem; }
+.interaction-intro { margin-bottom: 28px; line-height: 1.45; }
+a { color: black; font-weight: 800; }
+footer { text-align: center; }
+
+@media (max-width: 560px) {
+	.wrapper { margin: 12px auto; width: calc(100% - 24px); padding: 1.25rem; }
+	h2 { font-size: 1.35rem; }
+	h3 { font-size: 1.15rem; }
+	.project-card { padding: 16px; }
 }
 
-body {
-  margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
-  color: black;
-}
-
-html {
-  background: rgb(164, 255, 214);
-  background: linear-gradient(
-    135deg,
-    rgba(164, 255, 214, 1) 0%,
-    rgba(208, 166, 255, 1) 100%
-  );
-  background-attachment: fixed;
-}
-
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-.wrapper {
-  margin: 3vh auto; /* Centering horizontally */
-  width: calc(100vw - 6vh);
-  max-width: 720px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-sizing: border-box;
-  padding: 2rem;
-  overflow-y: auto;
-}
-
-h1 {
-  font-size: 2rem;
-  font-family: Anton, Impact;
-  text-align: left;
-  margin: 0;
-}
-
-h2 {
-  text-align: center;
-  margin: 40px 0px;
-}
-
-h3 {
-  text-align: center;
-  margin: 40px 0px;
-}
-
-p {
-  font-weight: bold;
-}
-
-.centeredP {
-  text-align: center;
-}
-
-hr {
-  border: 2px solid black;
-  border-radius: 5px;
-  margin: 40px 0px;
-}
-
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-  margin-top: 40px;
-}
-
-.container {
-  display: flex; /* Establishes a flex container for horizontal centering */
-  justify-content: center; /* Centers the content horizontally */
-  align-items: center; /* Centers the content vertically */
-}
-
-/* The p element */
-.container p {
-  margin-right: 10px; /* Adds a right margin to the switch */
-}
-
-/* The label element */
-.container .switch {
-  display: flex; /* Uses flex for easy centering */
-  align-items: center; /* Vertically centers the content */
-  gap: 10px; /* Space between the elements */
-}
-
-/* The switch element */
-.switch {
-  display: flex; /* Uses flex for easy centering */
-  align-items: center; /* Centers content vertically */
-  gap: 10px; /* Space between the elements */
-}
-
-.switch input {
-  display: none; /* Hides the actual checkbox element */
-}
-
-.switch span {
-  background-color: #ccc; /* The grey background of the switch */
-  border-radius: 17px; /* Rounded corners for the switch */
-  cursor: pointer; /* Pointer cursor on hover over the switch */
-  height: 34px;
-  width: 64px; /* Size of the switch */
-  position: relative; /* For positioning the circular button */
-  transition: background-color 0.4s; /* Transition effect for the background */
-}
-
-.switch span::before {
-  content: ""; /* The circular button inside the switch */
-  position: absolute;
-  left: 4px;
-  bottom: 4px;
-  height: 26px;
-  width: 26px;
-  background-color: white; /* Background color of the button */
-  border-radius: 50%; /* Circle shape */
-  transition: transform 0.4s; /* Transition effect for movement */
-}
-
-input:checked + span {
-  background-color: rgba(
-    164,
-    255,
-    214,
-    1
-  ); /* Background color of the switch when checked */
-}
-
-input:checked + span::before {
-  transform: translateX(30px); /* Moves the button to the right when checked */
-}
-
-.switch p {
-  margin: 0; /* Removes default spacing */
-  padding: 0; /* Ensures no additional spacing is present */
-}
